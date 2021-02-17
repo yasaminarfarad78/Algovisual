@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>الگوریتم های مرتب سازی</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,700|Roboto+Condensed:700" />
+        <link rel="stylesheet" href="AV/style.css" />
+    </head>
+    <body>
+        <a style="" class="sidebar__logo" href="index.html">
+            <abbr class="logo">&lt;AV/&gt;</abbr>
+        </a>
+        <!-- partial:index.partial.html -->
+        <input type="checkbox" id="navcheck" role="button" title="menu" />
+        <label for="navcheck" aria-hidden="true" title="menu">
+            <span class="burger">
+                <span class="bar">
+                    <span class="visuallyhidden">Menu</span>
+                </span>
+            </span>
+        </label>
+        <nav id="menu">
+            <a href="AV/selectionsortAV.html"> مرتب سازی انتخابی </a>
+
+            <a href="AV/bubblesort.html"> مرتب سازی حبابی </a>
+
+            <a href="AV/insertionsortAV.html"> مرتب سازی درجی </a>
+
+            <a href="AV/mergesortAV.html"> مرتب سازی ادغامی </a>
+
+            <a href="AV/quicksortAV.html"> مرتب سازی سریع </a>
+        </nav>
+        <main>
+            <article class="content">
+                <h2 style="text-align: center; direction: rtl;">الگوریتم های مرتب سازی</h2>
+                <p style="text-align: justify; direction: rtl;">
+                    منظور از مرتب&zwnj;سازی داده، چیدمان داده&zwnj;ها در قالبی خاص است. الگوریتم مرتب&zwnj;سازی روشی برای چیدمان داده&zwnj;ها با ترتیبی خاص تعیین می&zwnj;کند. اغلب ترتیب&zwnj;های رایج به صورت ترتیب عددی یا الفبایی هستند.
+                    اهمیت مرتب&zwnj;سازی در این نکته است که جستجوی داده&zwnj;ها در صورت مرتب بودن می&zwnj;تواند تا سطح بالایی بهینه&zwnj;سازی شود. مرتب&zwnj;سازی همچنین می&zwnj;تواند برای نمایش داده&zwnj;ها در قالب&zwnj;های خواناتر کمک کند.
+                    در ادامه نمونه&zwnj;هایی از کاربردهای مرتب&zwnj;سازی در زندگی روزمره ارائه شده است:
+                </p>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">دفترچه تلفن: دفترچه تلفن حاوی شماره تلفن&zwnj;های افراد است که بر اساس نام&zwnj;هایشان مرتب&zwnj;سازی شده است تا بتوان نام&zwnj;ها را به راحتی جستجو کرد.</li>
+                    <li style="text-align: justify; direction: rtl;">فرهنگ لغت: فرهنگ لغت حاوی واژگانی است که با ترتیب الفبایی مرتب شده&zwnj;اند تا جستجوی هر کلمه آسان باشد.</li>
+                </ul>
+
+                <h2 style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی در جا و مرتب&zwnj;سازی غیر در جا</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    الگوریتم&zwnj;های مرتب&zwnj;سازی برای مقایسه و ذخیره&zwnj;سازی موقت عناصر داده&zwnj;ای ممکن است به فضای اضافی نیاز داشته باشند. الگوریتم&zwnj;هایی که برای مرتب&zwnj;سازی به فضای اضافی نیاز ندارند، به نام
+                    الگوریتم&zwnj;های مرتب&zwnj;سازی در جا نامیده می&zwnj;شوند و از فضای خود آرایه بدین منظور استفاده می&zwnj;کنند. این روش مرتب&zwnj;سازی در جا نامیده می&zwnj;شود. برای نمونه مرتب&zwnj;سازی حبابی یک نمونه از
+                    الگوریتم&zwnj;های مرتب&zwnj;سازی در جا است.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    با این حال در برخی الگوریتم&zwnj;های مرتب&zwnj;سازی برنامه نیازمند فضایی است که معادل تعداد عناصر مورد مرتب&zwnj;سازی یا بیشتر از آن است. الگوریتم&zwnj;های مرتب&zwnj;سازی که نیازمند فضای معادل خود آرایه و یا بیشتر از آن
+                    هستند به نام الگوریتم&zwnj;های مرتب&zwnj;سازی غیر در جا نامیده می&zwnj;شوند. برای نمونه الگوریتم مرتب&zwnj;سازی ادغامی یک الگوریتم مرتب&zwnj;سازی غیر در جا است.
+                </p>
+
+                <h2 style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی پایدار و غیر پایدار</h2>
+
+                <p style="text-align: justify; direction: rtl;">اگر یک الگوریتم مرتب&zwnj;سازی پس از مرتب کردن محتوا، توالی عناصر مشابه را تغییر ندهد به نام الگوریتم مرتب&zwnj;سازی پایدار نامیده می&zwnj;شود.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411549" dir="rtl" src="https://blog.faradars.org/wp-content/uploads/2018/09/stable_sort.jpg" style="height: 188px; width: 400px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اگر یک الگوریتم مرتب&zwnj;سازی پس از مرتب کردن محتوا، توالی عناصر مشابه را تغییر دهد به نام الگویتم مرتب&zwnj;سازی غیر پایدار نامیده می&zwnj;شوند:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411420" src="https://blog.faradars.org/wp-content/uploads/2018/09/unstable_sort.jpg" style="height: 204px; width: 400px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">زمانی که می&zwnj;خواهیم توالی عناصر اصلی را حفظ کنیم، مثلاً در مورد مرتب&zwnj;سازی چندتایی&zwnj;ها، پایداری یک الگوریتم اهمیت خواهد یافت.</p>
+
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی تطبیقی و غیر تطبیقی</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک الگوریتم مرتب&zwnj;سازی در صورتی تطبیقی نامیده می&zwnj;شود که از مزیت عناصر قبلاً مرتب شده در ساختار دادهای که می&zwnj;خواهد مرتب&zwnj;سازی کند، بهره بگیرد. یعنی این الگوریتم هنگامی که می&zwnj;خواهد یک فهرست را مرتب
+                    کند، بررسی می&zwnj;کند و در صورتی که برخی عناصر موجود از قبل مرتب باشند، از این خصوصیت استفاده می&zwnj;کند و ترتیب این عناصر را تغییر نمی&zwnj;دهد.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    الگوریتم مرتب&zwnj;سازی غیر تطبیقی الگوریتمی است که به ترتیب کنونی عناصر اهمیتی نمی&zwnj;دهد. این الگوریتم&zwnj;ها تلاش می&zwnj;کنند ترتیب تک تک عناصر را تغییر دهند تا ترتیب نهایی مطلوب را به دست آورند.
+                </p>
+
+                <h2 style="text-align: justify; direction: rtl;">اصطلاح&zwnj;های مهم</h2>
+
+                <p style="text-align: justify; direction: rtl;">برخی اصلاح&zwnj;ها به طور کلی در مباحث مرتبط با تکنیک&zwnj;های مرتب&zwnj;سازی بیشتر به چشم می&zwnj;آیند که در ادامه برخی از آن&zwnj;ها را ارائه کرده&zwnj;ایم:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">ترتیب صعودی</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک توالی از مقادیر مختلف، زمانی دارای ترتیب صعودی نامیده می&zwnj;شود که همه عناصر پشت سر هم بزرگ&zwnj;تر از عنصر قبلی&zwnj;شان باشند. برای نمونه فهرست 1، 3، 4، 8، 9 دارای ترتیب صعودی است چون هر عنصر از عنصر قبلی خود
+                    بزرگ&zwnj;تر است.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">ترتیب نزولی</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک توالی از مقادیر، زمانی دارای ترتیب نزولی خوانده می&zwnj;شود که همه عناصر پشت سر هم از عنصر قبلی خود کوچک&zwnj;تر باشند. برای نمونه، 9، 8، 6، 4، 3، 1 دارای ترتیب نزولی است و هر عنصر از عنصر قبلی خود کوچک&zwnj;تر است.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">ترتیب غیر افزایشی</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک توالی از مقادیر دارای ترتیب غیر افزایشی نامیده می&zwnj;شود، وقتی همه عناصر پشت سر هم کمتر یا مساوی عنصر قبلی&zwnj;شان باشند. این ترتیب زمانی رخ می&zwnj;دهد که در توالی مقادیر مورد نظر، عناصری تکراری وجود داشته باشند.
+                    برای نمونه، 9، 8، 6، 3، 3، 1 دارای ترتیب غیر افزایشی است، چون هر عنصر کوچک&zwnj;تر یا مساوی (در مورد 3) از عنصر قبلی است، اما هیچ عنصری از عنصر قبلی خود بزرگ&zwnj;تر نیست.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">ترتیب غیر کاهشی</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک توالی از مقادیر، دارای ترتیب غیر کاهشی خوانده می&zwnj;شود، اگر عناصر پشت سر هم همواره بزرگ&zwnj;تر یا مساوی عنصر قبلی&zwnj;شان باشند. این ترتیب زمانی رخ می&zwnj;دهد که در یک توالی عناصر تکراری وجود داشته باشد. برای
+                    نمونه لیست 1، 3، 3، 6، 8، 9 یک فهرست با ترتیب غیر کاهشی است، چون هر عنصر کوچک&zwnj;تر یا مساوی (در مورد 3) از عنصر قبلی است؛ اما بزرگ&zwnj;تر نیست.
+                </p>
+
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی حبابی (Bubble Sort)</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    مرتب&zwnj;سازی حبابی یک الگوریتم مرتب&zwnj;سازی ساده است. این الگوریتم مرتب&zwnj;سازی یک الگوریتم مبتنی بر مقایسه است که در آن هر جفت از عناصر مجاور با هم مقایسه می&zwnj;شوند و در صورتی که در ترتیب مطلوب نباشند با هم
+                    تعویض می&zwnj;شوند. این الگوریتم برای مجموعه داده&zwnj;های بزرگ مطلوب نیست، زیرا پیچیدگی حالت میانگین و بدترین حالت آن برابر با (&Omicron;(n2 است که در آن n تعداد آیتم&zwnj;هایی است که باید مرتب شوند.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">طرز کار مرتب&zwnj;سازی حبابی</p>
+
+                <p style="text-align: justify; direction: rtl;">به عنوان مثال یک آرایه نامرتب را در نظر می&zwnj;گیریم. الگوریتم مرتب&zwnj;سازی حبابی باید (&Omicron;(n2 مرتبه روی این آرایه کار کند تا آن را مرتب و منظم کند</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411423" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_0.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی حبابی کار خود را با نخستین دو عنصر آغاز می&zwnj;کند و آن&zwnj;ها را مقایسه می&zwnj;کند تا ببیند کدام یک بزرگ&zwnj;تر است:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411426" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_1.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">در این مثال 33 از 14 بزرگ&zwnj;تر است و از این رو این دو عنصر هم&zwnj;اینک در وضعیت مرتب هستند، سپس دو مقدار 33 و 27 را مقایسه می&zwnj;کنیم:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411429" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_2.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">درمی&zwnj;یابیم که 27 کوچک&zwnj;تر از 33 است و لذا موقعیت این دو عنصر باید تعویض شود.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411432" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_3.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اینک آرایه به صورت زیر درمی&zwnj;آید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411435" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_4.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">سپس 33 و 35 را مقایسه می&zwnj;کنیم. مشخص است که این دو مقدار در وضعیت مرتب هستند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411438" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_5.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">سپس دو مقدار بعدی یعنی 35 و 10 مقایسه می&zwnj;شوند</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411441" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_6.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">می&zwnj;دانیم که 10 کوچک&zwnj;تر از 35 است. از این رو این دو مقدار مرتب نیستند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411444" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_7.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">این دو مقدار را تعویض می&zwnj;کنیم. درمی&zwnj;یابیم که به انتهای آرایه رسیده&zwnj;ایم. پس از یک چرخه، آرایه به صورت زیر درمی&zwnj;آید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411447" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_8.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">برای این که فرایند کار را خلاصه کنیم وضعیت آرایه را پس از هر چرخه مرتب&zwnj;سازی در ادامه ارائه کرده&zwnj;ایم. پس از چرخه دوم آرایه به صورت زیر درمی&zwnj;آید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411450" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_9.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">توجه کنید که پس از هر چرخه، دست کم یک مقدار تغییر یافته است</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411453" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_10.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">و زمانی که دیگر هیچ تعویضی رخ ندهد، الگوریتم مرتب&zwnj;سازی حبابی می&zwnj;فهمد که آرایه به طور کامل مرتب شده است.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411456" src="https://blog.faradars.org/wp-content/uploads/2018/09/bubble_sort_11.jpg" style="height: 56px; width: 253px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اینک الگوریتم مرتب&zwnj;سازی حبابی را به صورت عملی بررسی می&zwnj;کنیم:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم</h3>
+
+                <p style="text-align: justify; direction: rtl;">فرض می&zwnj;کنیم که list آرایه&zwnj;ای با n عنصر باشد. همچنین فرض می&zwnj;کنیم که تابع swap مقادیر مفروض عناصر آرایه را با هم تعویض کند.</p>
+
+                <script src="https://gist.github.com/yasaminarfarad78/875f0f6be8c1c5e116914aadc0b1bed7.js"></script>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    در الگوریتم مشاهده کردیم که مرتب&zwnj;سازی حبابی هر جفت از عناصر آرایه را مرتب می&zwnj;کند تا این که کل آرایه در ترتیب نزولی مرتب شده باشد. این وضعیت ممکن است موجب بروز برخی مشکل&zwnj;ها در خصوص پیچیدگی شود، مثلاً اگر به
+                    دلیل این که همه عناصر از قبل دارای ترتیب نزولی باشند، و نیازی به تعویض عناصر آرایه نباشد، چه اتفاقی می&zwnj;افتد؟ شبه کد الگوریتم مرتب&zwnj;سازی حبابی را به صورت زیر می&zwnj;توان نوشت:
+                </p>
+
+                <script src="https://gist.github.com/yasaminarfarad78/8f0942a433874fdac5c67c4f8b361ca9.js"></script>
+
+                <h3 style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    یک مشکل دیگر که در الگوریتم خودمان رفع نکردیم ولی در شبه کد بهینه&zwnj;سازی شده وجود دارد، این است که پس از هر چرخه، بزرگ&zwnj;ترین مقادیر در انتهای آرایه قرار می&zwnj;گیرند. از این رو در چرخه بعدی لازم نیست عناصری که
+                    قبلاً مرتب&zwnj;سازی شده&zwnj;اند دوباره بررسی شوند. به این منظور در پیاده&zwnj;سازی خودمان حلقه داخلی را محدود ساخته&zwnj;ایم تا از مقادیر قبلاً مرتب شده اجتناب کند.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی الگوریتم مرتب&zwnj;سازی حبابی در زبان C</p>
+                <script src="https://gist.github.com/yasaminarfarad78/5cb061fb97a89338462c90a287ed2d0f.js"></script>
+                <p style="text-align: justify; direction: rtl;">اگر کد فوق را کامپایل و اجرا کنیم، خروجی زیر حاصل می&zwnj;شود:</p>
+
+                <p style="text-align: justify; direction: rtl;">خروجی</p>
+                <script src="https://gist.github.com/yasaminarfarad78/d1ac42e61c672a568dd1643484ec632d.js"></script>
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی درجی (Insertion Sort)</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    الگوریتم مرتب&zwnj;سازی درجی یک الگوریتم مرتب&zwnj;سازی مبتنی بر مقایسه است. در این روش یک لیست فرعی نگه&zwnj;داری می&zwnj;شود که همواره در وضعیت مرتب است. برای نمونه بخش پایینی یک آرایه در وضعیت مرتب حفظ می&zwnj;شود.
+                    عنصری که باید در این لیست فرعی مرتب درج شود، می&zwnj;بایست موقعیت مناسب خود را بیابد و سپس در آنجا درج شود. از این رو نام این الگوریتم، مرتب&zwnj;سازی درجی است.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    آرایه به طور ترتیبی جستجو می&zwnj;شود و آیتم&zwnj;های مرتب نشده جابجا شده و در لیست فرعی مرتب (در همان آرایه) درج می&zwnj;شوند. این الگوریتم برای مجموعه داده&zwnj;های بزرگ مناسب نیست، چون پیچیدگی سناریوهای حالت میانگین و
+                    بدترین حالت آن برابر با (&Omicron;(n2 است که منظور از n تعداد آیتم&zwnj;ها است.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">&nbsp;</p>
+
+                <h3 style="text-align: justify; direction: rtl;">طرز کار الگوریتم مرتب&zwnj;سازی درجی</h3>
+
+                <p style="text-align: justify; direction: rtl;">برای مثال یک آرایه نامرتب را در نظر می&zwnj;گیریم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411552" src="https://blog.faradars.org/wp-content/uploads/2018/09/unsorted_array.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی درجی دو عنصر اول را مقایسه می&zwnj;کند:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411459" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_1.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مشخص است که هر دو مقدار 14 و 33 از قبل در ترتیب صعودی هستند. بنابراین 14 در لیست فرعی درج می&zwnj;شود.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411462" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_2.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی درجی پیش می&zwnj;رود و مقادیر 33 و 27 را مقایسه می&zwnj;کند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411465" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_3.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">و در می&zwnj;یابد که 33 در موقعیت صحیحی قرار ندارد.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411468" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_4.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    الگوریتم موقعیت مقدار 33 را با مقدار 27 تعویض می&zwnj;کند. همچنین ترتیب آن را با همه عناصر لیست فرعی بررسی می&zwnj;کند. در این جا می بنیم که لیست فرعی مرتب شده تنها عناصر 14 و 27 را دارد که بزرگ&zwnj;تر از 14 هستند. از
+                    این رو لیست فرعی مرتب شده پس از این جابجایی همچنان در وضعیت مرتب است.
+                </p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411471" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_5.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اینک مقادیر 14 و 27 را در لیست فرعی مرتب داریم. سپس مقادیر 33 و 10 را مقایسه می&zwnj;کنیم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411474" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_6.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">این مقادیر در ترتیب صحیحی نیستند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411477" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_7.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">موقعیت آن&zwnj;ها را تعویض می&zwnj;کنیم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411480" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_8.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">با این حال تعویض موقعیت&zwnj;ها باعث می&zwnj;شود که 27 و 10 از وضعیت مرتب خارج شوند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411483" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_9.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">از این رو آها را نیز تعویض می&zwnj;کنیم</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411486" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_10.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">باز درمی&zwnj;یابیم که 14 و 10 نیز در ترتیب ناصحیحی هستند:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411489" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_11.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">آن&zwnj;ها را نیز تعویض می&zwnj;کنیم. در نهایت ما اینک یک لیست فرعی مرتب با 4 آیتم داریم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411492" src="https://blog.faradars.org/wp-content/uploads/2018/09/insertion_sort_12.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    این فرایند تا زمانی که همه مقادیر نامرتب در لیست فرعی مرتب قرار گیرند ادامه می&zwnj;یابد. در ادامه جنبه&zwnj;های برنامه&zwnj;نویسی مرتب&zwnj;سازی درجی را بررسی می&zwnj;کنیم.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم</h3>
+
+                <p style="text-align: justify; direction: rtl;">اینک تصویر دقیقی از شیوه عمل این الگوریتم مرتب&zwnj;سازی درجی داریم و می&zwnj;توانیم مراحل ساده&zwnj;ای که برای رسیدن به این نوع مرتب&zwnj;سازی لازم است را نتیجه بگیریم:</p>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">گام 1 &ndash; اگر عنصر اول آرایه را بررسی می&zwnj;کنی و از قبل مرتب است، مقدار 1 را بازگشت بده</li>
+                    <li style="text-align: justify; direction: rtl;">گام 2 &ndash; عنصر بعدی را انتخاب کن</li>
+                    <li style="text-align: justify; direction: rtl;">گام 3 &ndash; عنصر انتخابی را با همه عناصر لیست فرعی مرتب مقایسه کن</li>
+                    <li style="text-align: justify; direction: rtl;">گام 4 &ndash; همه عناصری که در لیست فرعی مرتب هستند و بزرگ&zwnj;تر از مقدار مورد نظر هستند را جابجا کن تا کل لیست فرعی مرتب شود.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 5 &ndash; مقدار را در موقعیت مطلوب در لیست فرعی وارد کن</li>
+                    <li style="text-align: justify; direction: rtl;">گام 6 &ndash; تا زمانی که همه لیست مرتب شوند ادامه بدهد</li>
+                </ul>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/b99840317ea0ac7d667f8c86b56d5cd7.js"></script>
+
+                <h3 style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی الگوریتم مرتب&zwnj;سازی درجی در زبان C</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/f0cc693f687ecf2a7abc28aff96ab334.js"></script>
+                <p style="text-align: justify; direction: rtl;">اگر کد فوق را کامپایل کرده و اجرا کنید، خروجی زیر را مشاهده می&zwnj;کنید:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">خروجی</h3>
+
+                <script src="https://gist.github.com/yasaminarfarad78/d2e5ddf5a949b4c03f60feb36918dd45.js"></script>
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی انتخابی (Selection sort)</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    مرتب&zwnj;سازی انتخابی یک الگوریتم مرتب&zwnj;سازی ساده است. این الگوریتم مرتب&zwnj;سازی یک روش مرتب&zwnj;سازی درجا و مبتنی بر مقایسه است که در آن لیست به دو بخش تقسیم می&zwnj;شود، بخش مرتب در سمت چپ و بخش نامرتب در سمت
+                    راست قرار می&zwnj;گیرد. در ابتدا بخش مرتب خالی است و بخش نامرتب کل لیست را شامل می&zwnj;شود.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    کوچک&zwnj;ترین عنصر از آرایه نامرتب انتخاب می&zwnj;شود و با عنصری که در انتهای سمت چپ قرار دارد تعویض می&zwnj;شود. این فرایند تا زمانی که به کران سمت راست آرایه برسیم ادامه می&zwnj;یابد.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    این الگوریتم برای مجموعه داده&zwnj;های بزرگ مناسب نیست چون پیچیدگی سناریوهای حالت متوسط و بدترین حالت آن برابر با (&Omicron;(n2 است که در آن n تعداد آیتم&zwnj;های آرایه است.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">طرز کار الگوریتم مرتب&zwnj;سازی انتخابی</h3>
+
+                <p style="text-align: justify; direction: rtl;">آرایه&zwnj;ای که در تصویر زیر نشان داده شده را در نظر بگیرید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded ls-is-cached size-full wp-image-411552" src="https://blog.faradars.org/wp-content/uploads/2018/09/unsorted_array.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    برای این که دو عنصر اولیه لیست مرتب باشند، باید همه لیست به صورت ترتیبی بررسی شوند. موقعیت نخست حاوی مقدار 14 است که در حال حاضر در وضعیت مرتب قرار دارد، کل لیست را جستجو می&zwnj;کنیم و درمی&zwnj;یابیم که 10 مقدار کمتری
+                    دارد:
+                </p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411516" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort_1.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">بنابراین جای 14 و 10 را عوض می&zwnj;کنیم. پس از چرخه نخست مشخص می&zwnj;شود که 10 کوچک&zwnj;ترین عنصر لیست است و در موقعیت ابتدایی لیست مرتب قرار می&zwnj;گیرد.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411519" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort_2.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">برای موقعیت دوم که اینک مقدار 33 را در خود جای داده، باقی مانده لیست را به همان روش خطی بررسی می&zwnj;کنیم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411522" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort_3.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">درمی&zwnj;یابیم که 14 دومین مقدار کوچک در آرایه ما است و باید در جایگاه دوم لیست قرار داشته باشد، این مقادیر را تعویض می&zwnj;کنیم</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411525" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort_4.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">پس از چرخه دوم اینک دو مقدار داریم که در ابتدای لیست به صورت مرتب قرار گرفته&zwnj;اند:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411528" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort_5.jpg" style="height: 56px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">همین فرایند در مورد بخش باقی مانده لیست نیز به کار گرفته می&zwnj;شود. در ادامه کل فرایند مرتب&zwnj;سازی به صورت مرحله به مرحله و تصویری ارائه شده است:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-715148" src="https://blog.faradars.org/wp-content/uploads/2018/09/selection_sort-1.jpg" style="height: 649px; width: 392px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اینک جنبه&zwnj;های برنامه&zwnj;نویسی الگوریتم مرتب&zwnj;سازی انتخابی را بررسی می&zwnj;کنیم:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم</h3>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">گام 1 &ndash; مقدار Min را برابر با 0 می&zwnj;گیریم.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 2 &ndash; به دنبال کوچک&zwnj;ترین عنصر لیست می&zwnj;گردیم.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 3 &ndash; کوچک&zwnj;ترین مقدار را در موقعیت Min قرار می&zwnj;دهیم</li>
+                    <li style="text-align: justify; direction: rtl;">گام 4 &ndash; مقدار Min را به افزایش می&zwnj;دهیم تا برابر با این مقدار جدید باشد.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 5- این فرایند را تا زمانی که همه لیست مرتب شود تکرار می&zwnj;کنیم.</li>
+                </ul>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/5aededa034e932555bfed24888631b2d.js"></script>
+                <h3 style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی الگوریتم مرتب&zwnj;سازی انتخابی در زبان C</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/9b092132292231ba6a27a99f51333011.js"></script>
+                <p style="text-align: justify; direction: rtl;">اگر کد فوق را کامپایل و اجرا کنیم، خروجی زیر به دست می&zwnj;آید:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">خروجی</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/b073197f00855299674faac6f15d5b6d.js"></script>
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی ادغامی (Merge sort)</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    مرتب&zwnj;سازی ادغامی تکنیکی است که بر مبنای الگوریتم حل مسئله &laquo;تقسیم و حل&raquo; عمل می&zwnj;کند. پیچیدگی بدترین حالت برای این الگوریتم برابر با (&Omicron;(n log n است و از این رو یکی از الگوریتم&zwnj;هایی است که
+                    بسیار مورد استقبال قرار می&zwnj;گیرد.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مرتب&zwnj;سازی ادغامی، ابتدا آرایه را به دو نیمه مساوی تقسیم می&zwnj;کند و سپس آن&zwnj;ها را به روشی مرتب با هم ترکیب می&zwnj;کند.</p>
+
+                <h3 style="text-align: justify; direction: rtl;">طرز کار مرتب&zwnj;سازی ادغامی</h3>
+
+                <p style="text-align: justify; direction: rtl;">برای درک مرتب&zwnj;سازی ادغامی یک آرایه نامرتب را به صورت زیر در نظر می&zwnj;گیریم:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded ls-is-cached size-full wp-image-411552" src="https://blog.faradars.org/wp-content/uploads/2018/09/unsorted_array.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    می&zwnj;دانیم که مرتب&zwnj;سازی ادغامی نخست کل آرایه را به نیمه&zwnj;های مساوی تقسیم می&zwnj;کند تا این که به مقادیر منفرد برسد. در ادامه می&zwnj;بینیم که یک آرایه 8 آیتمی به دو آرایه 4 تایی تقسیم می&zwnj;شود.
+                </p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411501" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort_combine_2.jpg" style="height: 56px; width: 417px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">این کار توالی نمایش آیتم&zwnj;ها را در آرایه اصلی تغییر نمی&zwnj;دهد. اینک می&zwnj;توانیم این دو آرایه را به دو نیمه تقسیم کنیم.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411507" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort_divide_2.jpg" style="height: 56px; width: 463px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">در مرحله بعد باز هم آرایه&zwnj;ها را به دو نیمه تقسیم می&zwnj;کنیم و بدین ترتیب 8 مقدار منفرد به دست می&zwnj;آید که دیگر قابل تقسیم نیستند.</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411510" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort_divide_3.jpg" style="height: 55px; width: 566px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">اینک آن&zwnj;ها را به همان روشی که تقسیم کردیم، با هم ترکیب می&zwnj;کنیم. لطفاً به کدهای رنگی که به عناصر داده شده است، توجه کنید.</p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    در ابتدا عناصر هر لیست را مقایسه می&zwnj;کنیم و سپس آن را به روش مرتب در یک لیست دیگر ترکیب می&zwnj;کنیم. می&zwnj;بینیم که 14 و 33 در موقعیت&zwnj;های مرتب هستند. مقادیر 27 و 10 را مقایسه کرده و در لیست هدف 2 مقداری
+                    آن&zwnj;ها را به روش مرتب درج می&zwnj;کنیم، یعنی ابتدا 10 و سپس 27. بدین ترتیب در ادامه موقعیت&zwnj;های 19 و 35 را نیز عوض می&zwnj;کنیم در حالی که 42 و 44 به همان ترتیب در لیست 2 تایی جای می&zwnj;گیرند.
+                </p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411498" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort_combine_1.jpg" style="height: 56px; width: 461px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    در چرخه بعدی از فاز ترکیب، لیست&zwnj;های 2 مقداری را با هم مقایسه می&zwnj;کنیم و آن&zwnj;ها را در دو لیست چهارتایی ترکیب می&zwnj;کنیم به طوری که همه عناصر به صورت مرتب باشند.
+                </p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded ls-is-cached size-full wp-image-411501" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort_combine_2.jpg" style="height: 56px; width: 417px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">پس از ادغام نهایی، لیست به صورت زیر درمی&zwnj;آید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411495" src="https://blog.faradars.org/wp-content/uploads/2018/09/merge_sort.jpg" style="height: 56px; width: 391px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">در ادامه برخی جنبه&zwnj;های برنامه&zwnj;نویسی مرتب&zwnj;سازی ادغامی را با هم مرور می&zwnj;کنیم.</p>
+
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    مرتب&zwnj;سازی ادغامی به طور مداوم لیست را به نیمه&zwnj;های مساوی تقسیم می&zwnj;کند، تا جایی که دیگر امکان تقسیم نباشد. بر اساس تعریف اگر لیستی تنها یک آیتم داشته باشد، این لیست مرتب محسوب می&zwnj;شود. بنابراین
+                    مرتب&zwnj;سازی ادغامی این لیست&zwnj;های مرتب کوچک&zwnj;تر را به ترتیب با هم دیگر ادغام می&zwnj;کند، به طوری که لیست حاصل هم مرتب باشد.
+                </p>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">گام 1 &ndash; اگر تنها یک عنصر در لیست باشد، این لیست مرتب است و بازگرد.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 2- لیست را به طور بازگشتی به نیمه&zwnj;های مساوی تقسیم کن تا زمانی که دیگر امکان تقسیم وجود نداشته باشد.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 3- لیست&zwnj;های کوچک&zwnj;تر را به روشی مرتب در یک لیست جدید ادغام کن.</li>
+                </ul>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    در ادامه شبه کد الگوریتم مرتب&zwnj;سازی ادغامی را می&zwnj;بینیم. توجه کنید که الگوریتم ما دارای دو تابع اصلی است: تقسیم و ادغام. مرتب&zwnj;سازی ادغامی به صورت بازگشتی عمل می&zwnj;کند و پیاده&zwnj;سازی ما نیز به همین
+                    ترتیب بوده است:
+                </p>
+                <script src="https://gist.github.com/yasaminarfarad78/f558f388854be91b815898db85fda591.js"></script>
+                <h3 style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی الگوریتم مرتب&zwnj;سازی ادغامی در زبانC</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/96129ecb61e345ff46e2fa9f17e94290.js"></script>
+                <p style="text-align: justify; direction: rtl;">اگر کد فوق را کامپایل و اجرا کنیم، نتیجه زیر را مشاهده خواهیم کرد:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">خروجی</h3>
+
+                <script src="https://gist.github.com/yasaminarfarad78/a5bef258159db81e577027a8c3d72658.js"></script>
+                <h2 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی سریع (Quick sort)</h2>
+
+                <p style="text-align: justify; direction: rtl;">
+                    مرتب&zwnj;سازی سریع یک الگوریتم مرتب&zwnj;سازی بسیار بهینه است که بر اساس افراز یک آرایه به آرایه&zwnj;های کوچک&zwnj;تر عمل می&zwnj;کند. یک آرایه بزرگ به دو آرایه کوچک&zwnj;تر افراز می&zwnj;شود که یکی از آن&zwnj;ها
+                    مقادیری کوچک&zwnj;تر از یک مقدار مشخص را نگه&zwnj;داری می&zwnj;کند، فرض کنید این مقدار pivot نام دارد. بر همین اساس آرایه دیگر مقادیر بزرگ&zwnj;تر از Pivot را نگه&zwnj;داری می&zwnj;کند.
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">
+                    الگوریتم مرتب&zwnj;سازی سریع یک آرایه را افراز می&zwnj;کند و سپس خود را به صورت بازگشتی مجدداً فراخوانی می&zwnj;کند تا دو آرایه فرعی حاصل را مرتب&zwnj;سازی کند. این الگوریتم برای مجموعه داده&zwnj;های بزرگ کاملاً بهینه
+                    است، چون پیچیدگی سناریوی حالت متوسط برابر با ((&Theta;(n log(n و پیچیدگی زمانی بدترین حالت برابر با (&Omicron;(n2 است که n تعداد آیتم&zwnj;ها است.
+                </p>
+
+                <h3 style="text-align: justify; direction: rtl;">افراز در مرتب&zwnj;سازی سریع</h3>
+
+                <p style="text-align: justify; direction: rtl;">در تصویر متحرک زیر روش یافتن مقدار pivot در آرایه را می&zwnj;بینید:</p>
+
+                <p style="text-align: center; direction: rtl;">
+                    <img alt="" class="aligncenter lazyloaded size-full wp-image-411422" src="https://blog.faradars.org/wp-content/uploads/2018/09/quick_sort_partition_animation.gif" style="height: 200px; width: 500px;" />
+                </p>
+
+                <p style="text-align: justify; direction: rtl;">مقدار pivot لیست را به دو بخش تقسیم می&zwnj;کند و سپس به طور بازگشتی مقدار pivot را برای هر لیست فرعی پیدا می&zwnj;کنیم تا جایی که لیست&zwnj;ها تنها حاوی یک عنصر باشند.</p>
+
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم pivot مرتب&zwnj;سازی سریع</h3>
+
+                <p style="text-align: justify; direction: rtl;">بر اساس درکی که از افراز در مرتب&zwnj;سازی سریع داریم، اینک می&zwnj;توانیم الگوریتم آن را به صورت زیر بنویسیم:</p>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">گام 1- مقدار بالاترین اندیس را به عنوان مقدار pivot انتخاب کن</li>
+                    <li style="text-align: justify; direction: rtl;">گام 2 &ndash; دو متغیر را برای اشاره به سمت چپ و راست لیست به جز pivot انتخاب کن.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 3 &ndash; متغیر چپ به اندیس پایین اشاره می&zwnj;کند.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 4- متغیر راست به اندیس بالا اشاره می&zwnj;کند.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 5- مادمی که مقدار متغیر چپ کمتر از pivot باشد، به سمت راست حرکت کن.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 6 &ndash; مادامی که متغیر راست بزرگ&zwnj;تر از pivot باشد، به سمت چپ حرکت کن.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 7 &ndash; اگر هر دو وضعیتی که در گام&zwnj;های 5 و 6 اشاره کردیم مطابقت نداشتند، جای متغیرهای راست و چپ را تغییر بده</li>
+                    <li style="text-align: justify; direction: rtl;">گام 8 &ndash; اگر چپ <u>&gt;</u> راست بود در این صورت جایی که این دو به هم می&zwnj;رسند، pivot جدید است.</li>
+                </ul>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد pivot مرتب&zwnj;سازی سریع</h3>
+
+                <script src="https://gist.github.com/yasaminarfarad78/45356144e86d54aa0f0e25cd6678f800.js"></script>
+                <h3 style="text-align: justify; direction: rtl;">الگوریتم مرتب&zwnj;سازی سریع</h3>
+
+                <p style="text-align: justify; direction: rtl;">
+                    با استفاده بازگشتی از الگوریتم pivot در نهایت به کوچک&zwnj;ترین اندازه ممکن برای افرازها می&zwnj;رسیم. سپس هر افراز برای مرتب&zwnj;سازی سریع مورد پردازش قرار می&zwnj;گیرد. الگوریتم بازگشتی برای مرتب&zwnj;سازی سریع به
+                    صورت زیر است:
+                </p>
+
+                <ul>
+                    <li style="text-align: justify; direction: rtl;">گام 1 &ndash; اندیسی که در انتهای سمت راست قرار دارد را pivot قرار بده</li>
+                    <li style="text-align: justify; direction: rtl;">گام 2 &ndash; آرایه را با استفاده از این مقدار pivot افراز کن</li>
+                    <li style="text-align: justify; direction: rtl;">گام 3 &ndash; بخش چپ افراز را با استفاده از مرتب&zwnj;سازی سریع به طور بازگشتی مرتب کن.</li>
+                    <li style="text-align: justify; direction: rtl;">گام 4 &ndash; بخش راست افراز را با استفاده از مرتب&zwnj;سازی سریع به طور بازگشتی مرتب کن.</li>
+                </ul>
+
+                <h3 style="text-align: justify; direction: rtl;">شبه کد مرتب&zwnj;سازی سریع</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/0d16ba8efb7b6929af3acffaad4f77f6.js"></script>
+                <h3 style="text-align: justify; direction: rtl;">پیاده&zwnj;سازی الگوریتم مرتب&zwnj;سازی سریع در زبان C</h3>
+                <script src="https://gist.github.com/yasaminarfarad78/385ceb77cf0d8f148d813ea453db2201.js"></script>
+                <p style="text-align: justify; direction: rtl;">اگر کد فوق را کامپایل و اجرا کنیم، خروجی زیر حاصل می&zwnj;شود:</p>
+
+                <h3 style="text-align: justify; direction: rtl;">خروجی</h3>
+
+                <script src="https://gist.github.com/yasaminarfarad78/ee48ee2f9377f7b96fd0dbc75004dac4.js"></script>
+                <p style="text-align: justify; direction: rtl;">
+                    در این نوشته تلاش کردیم تا الگوریتم&zwnj;های مرتب&zwnj;سازی عمده&zwnj;ای که ساختارهای داده&zwnj;ای مورد استفاده قرار می&zwnj;گیرند را با هم مرور کنیم. در مورد هر روش مرتب&zwnj;سازی نیز هم الگوریتم و هم شبه کد مربوطه
+                    ارائه شد. همچنین پیاده&zwnj;سازی کامل آن در زبان C ارائه شده و توصیه می&zwnj;کنیم که این پیاده&zwnj;سازی را شخصاً کامپایل کرده و با بررسی بخش&zwnj;های مختلف آن به طور عملی با طرز کار هر یک از الگوریتم مرتب&zwnj;سازی آشنا
+                    شوید. توجه کنید که الگوریتم&zwnj;های مرتب&zwnj;سازی جزو مهم&zwnj;ترین الگوریتم&zwnj;های موجود در علوم رایانه هستند و هر نوع اپلیکیشنی که بخواهید بنویسید، می&zwnj;بایست از این الگوریتم&zwnj;ها در آن استفاده کنید. بنابراین
+                    یادگیری کامل این راهنما امری ضروری تلقی شود.
+                </p>
+            </article>
+        </main>
+                <!-- About -->
+        <a href="#" class="float cd-popup-trigger">
+            <i class="fa my-float">><span class="about">_</span></i>
+        </a>
+        <div class="label-container">
+            <div class="label-text">About</div>
+            <i class="fa fa-caret-left label-arrow"></i>
+        </div>
+        <div class="cd-popup" role="alert">
+            <div class="cd-popup-container">
+                <div class="fakeMenu">
+                    <div class="fakeButtons fakeClose"></div>
+                    <div class="fakeButtons fakeMinimize"></div>
+                    <div class="fakeButtons fakeZoom"></div>
+                </div>
+                <div class="fakeScreen">
+					<p id="line1" >
+                        ~$ echo about.txt
+                        <span id="cursor1" >_</span>
+                    </p>
+                    <p id="line2" >
+                        <br> Sort algorithms Visualization<br/><br>Data Structure  <br/> <br>Dr.Khafaie<br/>
+                        <span id="cursor2">_</span>
+                    </p>
+                    <p id="line3" >
+                        Dev: Yasamin Arfarad
+                        <span id="cursor3">_</span>
+                    </p>
+                    <p id="line4">
+                        >
+                        <span id="cursor4">_</span>
+                    </p>
+                </div>
+            </div>
+            <!-- cd-popup-container -->
+        </div>
+        <!-- About end -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!-- About click script -->
+        <script>
+            jQuery(document).ready(function ($) {
+                //open popup
+                $(".cd-popup-trigger").on("click", function (event) {
+                    event.preventDefault();
+                    $(".cd-popup").addClass("is-visible");
+					document.getElementById('line1').className ='line1';
+					document.getElementById('cursor1').className ='cursor1';
+					document.getElementById('line2').className ='line2';
+					document.getElementById('cursor2').className ='cursor2';
+					document.getElementById('line3').className ='line3';
+					document.getElementById('cursor3').className ='cursor3';
+					document.getElementById('line4').className ='line4';
+					document.getElementById('cursor4').className ='cursor4';
+                });
+
+                //close popup
+                $(".cd-popup").on("click", function (event) {
+                    if ($(event.target).is(".cd-popup-close") || $(event.target).is(".cd-popup")) {
+                        event.preventDefault();
+                        $(this).removeClass("is-visible");
+						document.getElementById("line1").classList.remove('line1');
+						document.getElementById("cursor1").classList.remove('cursor1');
+						document.getElementById("line2").classList.remove('line2');
+						document.getElementById("cursor2").classList.remove('cursor2');
+						document.getElementById("line3").classList.remove('line3');
+						document.getElementById("cursor3").classList.remove('cursor3');
+						document.getElementById("line4").classList.remove('line4');
+						document.getElementById("cursor4").classList.remove('cursor4');						
+                    }
+                });
+                //close popup when clicking the esc keyboard button
+                $(document).keyup(function (event) {
+                    if (event.which == "27") {
+                        $(".cd-popup").removeClass("is-visible");
+                    }
+                });
+            });
+        </script>
+		 <!-- About click script end -->
+    </body>
+</html>

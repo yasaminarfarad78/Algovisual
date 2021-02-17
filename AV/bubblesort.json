@@ -1,0 +1,62 @@
+{
+  "translations" : {
+    "en": {
+      ".avTitle": "مرتب سازی حبابی ",
+      
+      
+      "#run": "اجرا",
+      "#reset": "بازنشانی",
+      "#arraysizeLabel": " :اندازه لیست ",
+      "#arrayValuesLabel": " :ورودی ",
+      "av_arrValsPlaceholder": "اعداد آرایه با جدا کردن به وسیله '،'  وارد کنید و بر روی اجرا کلیک کنید، یا روی اجرا کلیک کنید تا اعداد به صورت تصادفی انتخاب شوند. ",
+      "av_c1": "برای هر پویش ، در صورت لزوم ، عناصر مجاور را از سمت چپ به راست انتقال می دهیم. هر پویش بزرگترین عنصر بعدی را به موقعیت نهایی خود منتقل می کند (این موارد با رنگ زرد نشان داده می شوند.)",
+      "av_c2": "شروع پیمایش ",
+      "av_c3": ".به ازای تمام عناصر در لیست حرکت می کنیم",
+      "av_c4": "مقایسه عناصر",
+      "av_c5": "تعویض.",
+      "av_c6": "این پویش انجام شد. آخرین عنصر پردازش شده اکنون در موقعیت نهایی خود قرار دارد.",
+      "av_c7": "!اتمام مرتب سازی."
+    }  
+  },
+  "code" : {
+    "c++": {
+      "url": "../SourceCode/C++/Sorting/Bubblesort.cpp",
+      "startAfter": "/* *** ODSATag: Bubblesort *** */",
+      "endBefore": "/* *** ODSAendTag: Bubblesort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "inloop": 3,
+        "compare": 4,
+        "swap": 5,
+        "end": 6
+      }
+    },
+    "java": {
+      "url": "../../SourceCode/Java/Sorting/Bubblesort.java",
+      "startAfter": "/* *** ODSATag: Bubblesort *** */",
+      "endBefore": "/* *** ODSAendTag: Bubblesort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "inloop": 3,
+        "compare": 4,
+        "swap": 5,
+        "end": 6
+      }
+    },
+    "java_generic": {
+      "url": "../../SourceCode/Java_Generic/Sorting/Bubblesort.java",
+      "startAfter": "/* *** ODSATag: Bubblesort *** */",
+      "endBefore": "/* *** ODSAendTag: Bubblesort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "inloop": 3,
+        "compare": 4,
+        "swap": 5,
+        "end": 6
+      }
+    }
+  }
+}

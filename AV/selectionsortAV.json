@@ -1,0 +1,70 @@
+{
+  "translations" : {
+    "en": {
+      ".avTitle": "مرتب سازی انتخابی",
+       "#run": "اجرا",
+      "#reset": "بازنشانی",
+      "#arraysizeLabel": " :اندازه لیست ",
+      "#arrayValuesLabel": " :ورودی ",
+      "av_arrValsPlaceholder": "اعداد آرایه با جدا کردن به وسیله '،'  وارد کنید و بر روی اجرا کلیک کنید، یا روی اجرا کلیک کنید تا اعداد به صورت تصادفی انتخاب شوند. ",
+      "av_c1": "شروع مرتب سازی انتخابی.",
+      "av_c2": "اتمام مرتب سازی!",
+      "av_c3": "برای هر پویش، ما از چپ به راست برای یافتن بزرگترین مقدار حرکت می کنیم. پس از یافتن آن، به موقعیت نهایی آن انتقال داده می شود(این اعمال با رنگ روشن تر نمایش داده می شود).",
+ 
+      "av_c4": "شروع پویش ",
+      "av_c5": "مقداردهی شاخصه بزرگنرین عدد",
+      "av_c6": "برای هر پویش بر روی لیست: بزرگنرین مقدار دیده شده تا الان(شاخصه بزرگترین عدد) همیشه به رنگ قرمز نشان داده می شود.",
+      "av_c7": "مقایسه با بزرگترین مقدار دیده شده تا الان. ",
+      "av_c8": "مقدار بزرگتر یافت شد، تغییر مقدار شاخصه بزرگترین عدد",
+      "av_c9": "اکنون بزرگترین عنصر بعدی را در جای خود قرار می دهیم.",
+      "av_c10": "این پویش به اتمام رسید."
+    }
+  },
+  "code" : {
+    "c++": {
+      "url": "../SourceCode/C++/Sorting/Selectionsort.cpp",
+      "startAfter": "/* *** ODSATag: Selectionsort *** */",
+      "endBefore": "/* *** ODSAendTag: Selectionsort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "initbig": 3,
+        "inloop": 4,
+        "compare": 5,
+        "setbig": 6,
+        "swap": 7,
+        "end": 9
+      }
+    },
+    "java": {
+      "url": "../SourceCode/Java/Sorting/Selectionsort.java",
+      "startAfter": "/* *** ODSATag: Selectionsort *** */",
+      "endBefore": "/* *** ODSAendTag: Selectionsort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "initbig": 3,
+        "inloop": 4,
+        "compare": 5,
+        "setbig": 6,
+        "swap": 7,
+        "end": 9
+      }
+    },
+    "java_generic": {
+      "url": "../SourceCode/Java_Generic/Sorting/Selectionsort.java",
+      "startAfter": "/* *** ODSATag: Selectionsort *** */",
+      "endBefore": "/* *** ODSAendTag: Selectionsort *** */",
+      "tags": {
+        "sig": 1,
+        "outloop": 2,
+        "initbig": 3,
+        "inloop": 4,
+        "compare": 5,
+        "setbig": 6,
+        "swap": 7,
+        "end": 9
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>مرتب سازی انتخابی</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="fonts/fontawesome.min.css" />		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,700|Roboto+Condensed:700" />
+		<link rel="stylesheet" href="fonts/duotone.min.css" type="text/css" />		
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../lib/JSAV.css" type="text/css" />
+        <link rel="stylesheet" href="../lib/odsaAV-min.css" type="text/css" />
+        <link rel="stylesheet" href="../lib/odsaStyle-min.css" type="text/css" />
+    </head>
+    <body>
+        <!-- logo-->
+        <a class="sidebar__logo" href="../index.html">
+            <abbr class="logo" type="text/css">&lt;AV/&gt;</abbr>
+        </a>
+        <!-- logo end-->
+
+        <!-- Menu-->
+        <input type="checkbox" id="navcheck" role="button" title="menu" />
+        <label for="navcheck" aria-hidden="true" title="menu">
+            <span class="burger">
+                <span class="bar">
+                    <span class="visuallyhidden">Menu</span>
+                </span>
+            </span>
+        </label>
+        <nav class="sidebar flex-column-nowrap" id="menu">
+            <a href="selectionsortAV.html"> مرتب سازی انتخابی </a>
+            <a href="bubblesort.html"> مرتب سازی حبابی </a>
+            <a href="insertionsortAV.html"> مرتب سازی درجی </a>
+            <a href="mergesortAV.html"> مرتب سازی ادغامی </a>
+            <a href="quicksortAV.html"> مرتب سازی سریع </a>
+        </nav>
+        <!-- Menu end-->
+        <!--container-->
+        <main>
+            <div class="content">
+                <div id="container">
+                    <form id="ssperform">
+                        <p>
+							<div class="Buttons " >
+								<a class="white"  href="#"><p><span class="bg"></span><span class="base"></span><span class="text" id="reset" type="button" name="reset"></span></p></a>
+								<a class="white"  href="#"><p><span class="bg"></span><span class="base"></span><span class="text" id="run" type="button" name="run"></span></p></a>
+							</div>
+                            <label class="arraysizeLabel" id="arraysizeLabel" for="arraysize"></label>
+                            <select class="arraysize" id="arraysize"></select>
+                        </p>
+                        <p>
+                            <label class="arrayValuesLabel" id="arrayValuesLabel" for="arrayValues"></label>
+                            <input class="arrayValues" size="100" name="arrayValues" id="arrayValues" type="text" />
+                        </p>
+                    </form>
+                    <div class="avcontainer">
+                        <span class="jsavcounter"></span>
+                        <div class="jsavcontrols"></div>
+                        <p class="jsavoutput jsavline"></p>
+                    </div>
+                    <!--avcontainer-->
+                </div>
+            </div>
+        </main>
+        <!--container end-->
+        <!-- About -->
+        <a href="#" class="float cd-popup-trigger">
+            <i class="fa my-float">><span class="about">_</span></i>
+        </a>
+        <div class="label-container">
+            <div class="label-text">About</div>
+            <i class="fa fa-caret-left label-arrow"></i>
+        </div>
+        <div class="cd-popup" role="alert">
+            <div class="cd-popup-container">
+                <div class="fakeMenu">
+                    <div class="fakeButtons fakeClose"></div>
+                    <div class="fakeButtons fakeMinimize"></div>
+                    <div class="fakeButtons fakeZoom"></div>
+                </div>
+                <div class="fakeScreen">
+                    <p id="line1" >
+                        ~$ echo about.txt
+                        <span id="cursor1" >_</span>
+                    </p>
+                    <p id="line2" >
+                        <br> Sort algorithms Visualization<br/><br>Data Structure  <br/> <br>Dr.Khafaie<br/>
+                        <span id="cursor2">_</span>
+                    </p>
+                    <p id="line3" >
+                        Dev: Yasamin Arfarad
+                        <span id="cursor3">_</span>
+                    </p>
+                    <p id="line4">
+                        >
+                        <span id="cursor4">_</span>
+                    </p>
+                </div>
+            </div>
+            <!-- cd-popup-container -->
+        </div>
+        <!-- About end -->
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../lib/jquery.migrate.min.js"></script>
+        <script src="../lib/jquery.ui.min.js"></script>
+        <script src="../lib/jquery.transit.js"></script>
+        <script src="../lib/raphael.js"></script>
+        <script src="../lib/JSAV-min.js"></script>
+        <script src="../lib/odsaUtils-min.js"></script>
+        <script src="../lib/odsaAV-min.js"></script>
+        <script src="selectionsortAV.js"></script>
+        <!-- About click script -->
+        <script>
+            jQuery(document).ready(function ($) {
+                //open popup
+                $(".cd-popup-trigger").on("click", function (event) {
+                    event.preventDefault();
+                    $(".cd-popup").addClass("is-visible");
+					document.getElementById('line1').className ='line1';
+					document.getElementById('cursor1').className ='cursor1';
+					document.getElementById('line2').className ='line2';
+					document.getElementById('cursor2').className ='cursor2';
+					document.getElementById('line3').className ='line3';
+					document.getElementById('cursor3').className ='cursor3';
+					document.getElementById('line4').className ='line4';
+					document.getElementById('cursor4').className ='cursor4';
+                });
+
+                //close popup
+                $(".cd-popup").on("click", function (event) {
+                    if ($(event.target).is(".cd-popup-close") || $(event.target).is(".cd-popup")) {
+                        event.preventDefault();
+                        $(this).removeClass("is-visible");
+						document.getElementById("line1").classList.remove('line1');
+						document.getElementById("cursor1").classList.remove('cursor1');
+						document.getElementById("line2").classList.remove('line2');
+						document.getElementById("cursor2").classList.remove('cursor2');
+						document.getElementById("line3").classList.remove('line3');
+						document.getElementById("cursor3").classList.remove('cursor3');
+						document.getElementById("line4").classList.remove('line4');
+						document.getElementById("cursor4").classList.remove('cursor4');						
+                    }
+                });
+                //close popup when clicking the esc keyboard button
+                $(document).keyup(function (event) {
+                    if (event.which == "27") {
+                        $(".cd-popup").removeClass("is-visible");
+                    }
+                });
+            });
+        </script>
+		 <!-- About click script end -->
+    </body>
+</html>
